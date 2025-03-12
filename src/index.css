@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -13,7 +14,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 199 49% 47%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -97,5 +98,53 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Custom styling for the mobile application */
+  .pmc-container {
+    @apply max-w-md mx-auto min-h-screen bg-white;
+  }
+
+  .bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 flex justify-between items-center py-3 px-6 bg-white border-t border-gray-200 max-w-md mx-auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  .bottom-nav-item {
+    @apply flex flex-col items-center justify-center;
+  }
+
+  .bottom-nav-icon {
+    @apply text-gray-500 mb-1;
+  }
+
+  .bottom-nav-text {
+    @apply text-xs text-gray-500;
+  }
+
+  .bottom-nav-item.active .bottom-nav-icon,
+  .bottom-nav-item.active .bottom-nav-text {
+    @apply text-pmc-blue;
+  }
+
+  .page-title {
+    @apply text-xl font-semibold text-pmc-dark mb-4;
+  }
+
+  .card {
+    @apply bg-white rounded-lg shadow-md p-4 mb-4;
+  }
+
+  .btn-primary {
+    @apply bg-pmc-blue text-white py-2 px-4 rounded-md font-medium hover:bg-opacity-90 transition-all;
+  }
+
+  .btn-outline {
+    @apply border border-pmc-blue text-pmc-blue py-2 px-4 rounded-md font-medium hover:bg-pmc-blue hover:bg-opacity-10 transition-all;
+  }
+
+  .btn-danger {
+    @apply bg-pmc-red text-white py-2 px-4 rounded-md font-medium hover:bg-opacity-90 transition-all;
   }
 }
