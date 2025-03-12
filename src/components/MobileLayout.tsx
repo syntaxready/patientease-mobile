@@ -19,7 +19,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
   const isMobile = useIsMobile();
 
   return (
-    <div className={`${isMobile ? 'pmc-container' : 'pmc-desktop-container'} pb-16`}>
+    <div className="pmc-container pb-16">
       {title && (
         <header className="sticky top-0 z-10 bg-white border-b border-gray-100 p-4">
           <div className="flex items-center">
@@ -37,7 +37,7 @@ const MobileLayout: React.FC<MobileLayoutProps> = ({
           </div>
         </header>
       )}
-      <main className={`p-4 ${!isMobile && 'max-w-7xl mx-auto'}`}>
+      <main className="p-4">
         {children}
       </main>
       <BottomNavbar />
