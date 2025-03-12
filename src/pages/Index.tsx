@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
@@ -84,7 +83,6 @@ const Index = () => {
         />
       </div>
 
-      {/* Symptoms Reporting Button */}
       <div 
         onClick={() => navigate('/report-symptoms')}
         className="bg-red-50 rounded-lg p-4 mb-6 flex items-center cursor-pointer hover:shadow-md transition-shadow"
@@ -94,7 +92,7 @@ const Index = () => {
         </div>
         <div>
           <h4 className="font-medium text-pmc-dark">Not Feeling Well?</h4>
-          <p className="text-xs text-gray-600">Report your symptoms to our medical team</p>
+          <p className="text-xs text-gray-600">Click here to report your symptoms to our medical team</p>
         </div>
       </div>
 
