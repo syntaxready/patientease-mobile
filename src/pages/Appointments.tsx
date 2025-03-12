@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
 import AppointmentCard from '@/components/AppointmentCard';
 import { Plus } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Appointments = () => {
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
   const [filterStatus, setFilterStatus] = useState<'all' | 'upcoming' | 'completed' | 'canceled'>('all');
 
   const appointments = [
@@ -50,13 +52,16 @@ const Appointments = () => {
 
   return (
     <MobileLayout title="Appointments">
-      <div className="flex mb-6 border rounded-lg overflow-hidden">
+      {/* Responsive filter buttons */}
+      <div className="flex mb-6 border rounded-lg overflow-hidden flex-wrap sm:flex-nowrap">
         {(['all', 'upcoming', 'completed', 'canceled'] as const).map((status) => (
           <button 
             key={status}
-            className={`flex-1 py-2 text-sm ${filterStatus === status 
-              ? 'bg-pmc-blue text-white' 
-              : 'bg-white text-gray-600'}`}
+            className={`py-2 text-sm ${isMobile ? 'flex-1 min-w-[25%]' : 'flex-1'} ${
+              filterStatus === status 
+                ? 'bg-pmc-blue text-white' 
+                : 'bg-white text-gray-600 hover:bg-gray-50'
+            }`}
             onClick={() => setFilterStatus(status)}
           >
             {status.charAt(0).toUpperCase() + status.slice(1)}
@@ -64,7 +69,8 @@ const Appointments = () => {
         ))}
       </div>
 
-      <div className="space-y-4">
+      {/* Responsive appointment list */}
+      <div className="space-y-4 pb-20">
         {filteredAppointments.map((appointment) => (
           <AppointmentCard
             key={appointment.id}
@@ -84,12 +90,14 @@ const Appointments = () => {
         </div>
       )}
 
-      <div className="fixed bottom-20 right-4">
+      {/* Floating action button - positioned better for mobile */}
+      <div className="fixed bottom-20 right-4 z-10">
         <button 
-          className="h-12 w-12 rounded-full bg-pmc-blue text-white flex items-center justify-center shadow-lg"
+          className="h-14 w-14 rounded-full bg-pmc-blue text-white flex items-center justify-center shadow-lg hover:bg-opacity-90 transition-colors"
           onClick={() => navigate('/appointments/new')}
+          aria-label="Add new appointment"
         >
-          <Plus />
+          <Plus size={24} />
         </button>
       </div>
     </MobileLayout>
