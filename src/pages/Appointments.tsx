@@ -53,11 +53,11 @@ const Appointments = () => {
   return (
     <MobileLayout title="Appointments">
       {/* Responsive filter buttons */}
-      <div className="flex mb-6 border rounded-lg overflow-hidden flex-wrap sm:flex-nowrap">
+      <div className="grid grid-cols-4 mb-6 border rounded-lg overflow-hidden">
         {(['all', 'upcoming', 'completed', 'canceled'] as const).map((status) => (
           <button 
             key={status}
-            className={`py-2 text-sm ${isMobile ? 'flex-1 min-w-[25%]' : 'flex-1'} ${
+            className={`py-2 px-1 text-sm ${
               filterStatus === status 
                 ? 'bg-pmc-blue text-white' 
                 : 'bg-white text-gray-600 hover:bg-gray-50'
