@@ -1,9 +1,10 @@
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
 import Logo from '@/components/Logo';
 import AppointmentCard from '@/components/AppointmentCard';
-import { Calendar, FileText, Pill, ClipboardList, ChevronRight, Heart, AlertTriangle } from 'lucide-react';
+import { Calendar, FileText, Pill, ClipboardList, ChevronRight, Heart, AlertTriangle, Settings, User } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -39,8 +40,19 @@ const Index = () => {
     <MobileLayout>
       <div className="flex items-center justify-between mb-6">
         <Logo />
-        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
-          <span className="text-pmc-dark font-medium">JD</span>
+        <div className="flex items-center space-x-2">
+          <button 
+            onClick={() => navigate('/settings')} 
+            className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-pmc-dark hover:bg-gray-200 transition-colors"
+          >
+            <Settings size={20} />
+          </button>
+          <button 
+            onClick={() => navigate('/profile')} 
+            className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-pmc-dark hover:bg-gray-300 transition-colors"
+          >
+            <span className="text-pmc-dark font-medium">JD</span>
+          </button>
         </div>
       </div>
 
