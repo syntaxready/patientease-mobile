@@ -20,7 +20,7 @@ import {
   FileImage, 
   FlaskConical, 
   Brain, 
-  Tooth, 
+  Scissors as DentistryIcon, 
   ActivitySquare,
   Briefcase
 } from 'lucide-react';
@@ -43,7 +43,7 @@ const servicesData = [
   { name: "X-ray", icon: FileImage },
   { name: "Laboratory & Diagnostics", icon: FlaskConical },
   { name: "Psychiatry", icon: Brain },
-  { name: "Dentistry", icon: Tooth },
+  { name: "Dentistry", icon: DentistryIcon },
   { name: "Physiotherapy", icon: ActivitySquare },
   { name: "Work & School Fitness", icon: Briefcase }
 ];
