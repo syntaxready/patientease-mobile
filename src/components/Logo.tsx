@@ -2,7 +2,7 @@
 import React from 'react';
 
 interface LogoProps {
-  size?: 'small' | 'medium' | 'large' | 'xlarge';
+  size?: 'small' | 'medium' | 'large';
   className?: string;
 }
 
@@ -10,8 +10,7 @@ const Logo: React.FC<LogoProps> = ({ size = 'medium', className = '' }) => {
   const sizeClasses = {
     small: 'h-8',
     medium: 'h-12',
-    large: 'h-16',
-    xlarge: 'h-24'
+    large: 'h-16'
   };
 
   return (
