@@ -12,6 +12,7 @@ import TestResults from "./pages/TestResults";
 import History from "./pages/History";
 import Services from "./pages/Services";
 import HealthCheck from "./pages/HealthCheck";
+import SymptomsReport from "./pages/SymptomsReport";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/history" element={<History />} />
           <Route path="/services" element={<Services />} />
           <Route path="/health-check" element={<HealthCheck />} />
+          <Route path="/report-symptoms" element={<SymptomsReport />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

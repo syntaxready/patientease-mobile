@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
 import Logo from '@/components/Logo';
 import AppointmentCard from '@/components/AppointmentCard';
-import { Calendar, FileText, Pill, ClipboardList, ChevronRight, Heart } from 'lucide-react';
+import { Calendar, FileText, Pill, ClipboardList, ChevronRight, Heart, AlertTriangle } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -84,7 +84,21 @@ const Index = () => {
         />
       </div>
 
-      <div className="mt-8">
+      {/* Symptoms Reporting Button */}
+      <div 
+        onClick={() => navigate('/report-symptoms')}
+        className="bg-red-50 rounded-lg p-4 mb-6 flex items-center cursor-pointer hover:shadow-md transition-shadow"
+      >
+        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-3">
+          <AlertTriangle className="text-red-500" size={24} />
+        </div>
+        <div>
+          <h4 className="font-medium text-pmc-dark">Not Feeling Well?</h4>
+          <p className="text-xs text-gray-600">Report your symptoms to our medical team</p>
+        </div>
+      </div>
+
+      <div className="mt-4">
         <h3 className="font-medium text-pmc-dark mb-3">Medical Services</h3>
         <div className="grid grid-cols-2 gap-4">
           <div onClick={() => navigate('/services')} className="bg-blue-50 rounded-lg p-4 flex items-center">
