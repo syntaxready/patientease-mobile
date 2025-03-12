@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
 import Logo from '@/components/Logo';
@@ -8,6 +8,7 @@ import { Calendar, FileText, Pill, ClipboardList, ChevronRight, Heart, AlertTria
 
 const Index = () => {
   const navigate = useNavigate();
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
   const quickActions = [
     { 
@@ -36,6 +37,25 @@ const Index = () => {
     },
   ];
 
+  const toggleProfileDropdown = () => {
+    setShowProfileDropdown(!showProfileDropdown);
+  };
+
+  // Close the dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('#profile-button') && !target.closest('#profile-dropdown')) {
+        setShowProfileDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
     <MobileLayout>
       <div className="flex items-center justify-between mb-6">
@@ -47,12 +67,77 @@ const Index = () => {
           >
             <Settings size={20} />
           </button>
-          <button 
-            onClick={() => navigate('/profile')} 
-            className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-pmc-dark hover:bg-gray-300 transition-colors"
-          >
-            <span className="text-pmc-dark font-medium">JD</span>
-          </button>
+          <div className="relative">
+            <button 
+              id="profile-button"
+              onClick={toggleProfileDropdown} 
+              className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-pmc-dark hover:bg-gray-300 transition-colors"
+              aria-expanded={showProfileDropdown}
+              aria-haspopup="true"
+            >
+              <span className="text-pmc-dark font-medium">JD</span>
+            </button>
+
+            {showProfileDropdown && (
+              <div 
+                id="profile-dropdown"
+                className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-lg z-50 overflow-hidden"
+              >
+                <div className="p-4 border-b">
+                  <div className="flex items-center">
+                    <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-3">
+                      <User size={24} />
+                    </div>
+                    <div>
+                      <h4 className="font-medium text-gray-900">John Doe</h4>
+                      <p className="text-sm text-gray-600">john.doe@example.com</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-4 border-b">
+                  <h5 className="text-xs uppercase text-gray-500 font-medium mb-2">Patient Information</h5>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Date of Birth:</span>
+                      <span className="font-medium">04/12/1985</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Patient ID:</span>
+                      <span className="font-medium">PMC-12345</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Blood Type:</span>
+                      <span className="font-medium">O+</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Primary Care:</span>
+                      <span className="font-medium">Dr. Smith</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="p-2">
+                  <button 
+                    onClick={() => navigate('/profile')}
+                    className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md flex items-center"
+                  >
+                    <User size={16} className="mr-2" />
+                    View Full Profile
+                  </button>
+                  <button 
+                    onClick={() => {
+                      localStorage.removeItem('isAuthenticated');
+                      navigate('/auth');
+                    }}
+                    className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
