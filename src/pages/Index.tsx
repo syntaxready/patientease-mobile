@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
 import Logo from '@/components/Logo';
 import AppointmentCard from '@/components/AppointmentCard';
-import { Calendar, FileText, Pill, ClipboardList, ChevronRight } from 'lucide-react';
+import { Calendar, FileText, Pill, ClipboardList, ChevronRight, Heart } from 'lucide-react';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -98,9 +98,12 @@ const Index = () => {
               <p className="text-xs text-gray-600">View all available treatments</p>
             </div>
           </div>
-          <div className="bg-green-50 rounded-lg p-4 flex items-center">
+          <div 
+            onClick={() => navigate('/health-check')} 
+            className="bg-green-50 rounded-lg p-4 flex items-center cursor-pointer hover:shadow-md transition-shadow"
+          >
             <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mr-3">
-              <Calendar className="text-pmc-blue" size={24} />
+              <Heart className="text-pmc-blue" size={24} />
             </div>
             <div>
               <h4 className="font-medium text-pmc-dark">Book a Health Check</h4>
