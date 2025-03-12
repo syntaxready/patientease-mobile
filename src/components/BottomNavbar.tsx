@@ -2,10 +2,13 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Calendar, Home, Pill, FileText, ClipboardList } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
+import Logo from './Logo';
 
 const BottomNavbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
   
   const navItems = [
     { 
@@ -34,6 +37,31 @@ const BottomNavbar: React.FC = () => {
       icon: ClipboardList 
     }
   ];
+
+  if (!isMobile) {
+    return (
+      <nav className="fixed top-0 left-0 right-0 z-10 flex justify-between items-center py-3 px-6 bg-white border-b border-gray-200">
+        <div className="flex items-center">
+          <Logo size="small" className="mr-6" />
+          <div className="flex space-x-6">
+            {navItems.map((item) => (
+              <button 
+                key={item.path}
+                className={`flex items-center space-x-1 font-medium ${location.pathname === item.path ? 'text-pmc-blue' : 'text-gray-600'}`}
+                onClick={() => navigate(item.path)}
+              >
+                <item.icon size={18} />
+                <span>{item.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+        <div className="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center">
+          <span className="text-pmc-dark font-medium">JD</span>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="bottom-nav">
