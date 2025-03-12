@@ -2,10 +2,12 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Calendar, Home, Pill, FileText, ClipboardList } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const BottomNavbar: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isMobile = useIsMobile();
   
   const navItems = [
     { 
@@ -43,7 +45,7 @@ const BottomNavbar: React.FC = () => {
           className={`bottom-nav-item ${location.pathname === item.path ? 'active' : ''}`}
           onClick={() => navigate(item.path)}
         >
-          <item.icon className="bottom-nav-icon" size={20} />
+          <item.icon className="bottom-nav-icon" size={isMobile ? 20 : 22} />
           <span className="bottom-nav-text">{item.label}</span>
         </button>
       ))}

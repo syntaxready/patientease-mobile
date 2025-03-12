@@ -101,26 +101,29 @@
     font-family: 'Poppins', sans-serif;
   }
 
-  /* Custom styling for the mobile application */
+  /* Custom styling for the mobile and desktop application */
   .pmc-container {
-    @apply max-w-md mx-auto min-h-screen bg-white;
+    @apply max-w-md mx-auto min-h-screen bg-white md:min-h-0;
+    @apply md:border md:rounded-xl;
   }
 
   .bottom-nav {
     @apply fixed bottom-0 left-0 right-0 flex justify-between items-center py-3 px-6 bg-white border-t border-gray-200 max-w-md mx-auto;
+    @apply md:max-w-4xl md:rounded-b-xl;
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
   }
 
   .bottom-nav-item {
     @apply flex flex-col items-center justify-center;
+    @apply md:flex-row md:gap-2;
   }
 
   .bottom-nav-icon {
-    @apply text-gray-500 mb-1;
+    @apply text-gray-500 mb-1 md:mb-0;
   }
 
   .bottom-nav-text {
-    @apply text-xs text-gray-500;
+    @apply text-xs text-gray-500 md:text-sm;
   }
 
   .bottom-nav-item.active .bottom-nav-icon,
@@ -129,22 +132,26 @@
   }
 
   .page-title {
-    @apply text-xl font-semibold text-pmc-dark mb-4;
+    @apply text-xl font-semibold text-pmc-dark mb-4 md:text-2xl;
   }
 
   .card {
-    @apply bg-white rounded-lg shadow-md p-4 mb-4;
+    @apply bg-white rounded-lg shadow-md p-4 mb-4 md:p-6;
+    @apply hover:shadow-lg transition-shadow;
   }
 
   .btn-primary {
     @apply bg-pmc-blue text-white py-2 px-4 rounded-md font-medium hover:bg-opacity-90 transition-all;
+    @apply md:py-3 md:px-6;
   }
 
   .btn-outline {
     @apply border border-pmc-blue text-pmc-blue py-2 px-4 rounded-md font-medium hover:bg-pmc-blue hover:bg-opacity-10 transition-all;
+    @apply md:py-3 md:px-6;
   }
 
   .btn-danger {
     @apply bg-pmc-red text-white py-2 px-4 rounded-md font-medium hover:bg-opacity-90 transition-all;
+    @apply md:py-3 md:px-6;
   }
 }
