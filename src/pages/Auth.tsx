@@ -1,12 +1,12 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import MobileLayout from '@/components/MobileLayout';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { toast } from 'sonner';
-import { AtSign, KeyRound, UserPlus, UserRound } from 'lucide-react';
+import { AtSign, KeyRound, ArrowLeft, HelpCircle, Info } from 'lucide-react';
 import Logo from '@/components/Logo';
 
 const Auth = () => {
@@ -20,6 +20,7 @@ const Auth = () => {
     // Simulate authentication
     setTimeout(() => {
       setIsLoading(false);
+      localStorage.setItem('isAuthenticated', 'true');
       toast.success('Successfully signed in');
       navigate('/');
     }, 1500);
@@ -32,14 +33,31 @@ const Auth = () => {
     // Simulate registration
     setTimeout(() => {
       setIsLoading(false);
+      localStorage.setItem('isAuthenticated', 'true');
       toast.success('Account created successfully');
       navigate('/');
     }, 1500);
   };
 
+  const handleGuestAccess = () => {
+    localStorage.setItem('isAuthenticated', 'true');
+    toast.success('Signed in as guest');
+    navigate('/');
+  };
+
   return (
     <MobileLayout>
       <div className="flex flex-col items-center justify-center py-8">
+        <div className="w-full px-4 mb-4">
+          <button 
+            onClick={() => navigate('/splash')} 
+            className="flex items-center text-pmc-blue"
+          >
+            <ArrowLeft size={18} className="mr-1" />
+            Back
+          </button>
+        </div>
+        
         <Logo className="mb-8" />
         
         <Tabs defaultValue="signin" className="w-full max-w-md">
@@ -49,7 +67,7 @@ const Auth = () => {
           </TabsList>
           
           <TabsContent value="signin">
-            <div className="space-y-4">
+            <div className="space-y-4 px-4">
               <h1 className="text-2xl font-bold text-center text-pmc-dark">Welcome Back</h1>
               <p className="text-center text-gray-500">Sign in to your PatientEase account</p>
               
@@ -91,11 +109,20 @@ const Auth = () => {
                   {isLoading ? 'Signing in...' : 'Sign In'}
                 </Button>
               </form>
+              
+              <div className="text-center">
+                <button 
+                  onClick={handleGuestAccess}
+                  className="text-pmc-blue hover:underline text-sm mt-4"
+                >
+                  Continue as guest
+                </button>
+              </div>
             </div>
           </TabsContent>
           
           <TabsContent value="signup">
-            <div className="space-y-4">
+            <div className="space-y-4 px-4">
               <h1 className="text-2xl font-bold text-center text-pmc-dark">Create Account</h1>
               <p className="text-center text-gray-500">Join PatientEase for better healthcare management</p>
               
@@ -103,10 +130,7 @@ const Auth = () => {
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-gray-700">First Name</label>
-                    <div className="relative">
-                      <UserRound className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" size={18} />
-                      <Input placeholder="John" className="pl-10" required />
-                    </div>
+                    <Input placeholder="John" required />
                   </div>
                   
                   <div className="space-y-2">
@@ -164,6 +188,18 @@ const Auth = () => {
             </div>
           </TabsContent>
         </Tabs>
+        
+        {/* Footer navigation links */}
+        <div className="mt-8 w-full max-w-md flex justify-center space-x-6 px-4">
+          <Link to="/services" className="flex items-center text-sm text-gray-600 hover:text-pmc-blue">
+            <Info size={16} className="mr-1" />
+            Services
+          </Link>
+          <Link to="/help" className="flex items-center text-sm text-gray-600 hover:text-pmc-blue">
+            <HelpCircle size={16} className="mr-1" />
+            Help
+          </Link>
+        </div>
       </div>
     </MobileLayout>
   );

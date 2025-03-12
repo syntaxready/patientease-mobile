@@ -19,6 +19,7 @@ import Auth from "./pages/Auth";
 import Settings from "./pages/Settings";
 import PaymentMethods from "./pages/PaymentMethods";
 import Checkout from "./pages/Checkout";
+import Help from "./pages/Help";
 
 // Protected route component
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
@@ -42,6 +43,8 @@ const App = () => (
         <Routes>
           <Route path="/splash" element={<SplashScreen />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/services" element={<Services />} />
           
           {/* Protected routes */}
           <Route path="/" element={
@@ -72,11 +75,6 @@ const App = () => (
           <Route path="/history" element={
             <ProtectedRoute>
               <History />
-            </ProtectedRoute>
-          } />
-          <Route path="/services" element={
-            <ProtectedRoute>
-              <Services />
             </ProtectedRoute>
           } />
           <Route path="/health-check" element={

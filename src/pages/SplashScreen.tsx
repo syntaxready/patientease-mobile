@@ -20,7 +20,7 @@ const SplashScreen = () => {
   return (
     <div className="h-screen w-full bg-pmc-blue flex flex-col items-center justify-center">
       <div className="animate-pulse">
-        <Logo color="white" size="large" />
+        <Logo className="text-white" size="large" />
       </div>
       
       <div className="mt-8 text-white text-xl font-semibold">
